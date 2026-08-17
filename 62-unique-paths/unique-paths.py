@@ -1,17 +1,23 @@
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-        @cache
-        def F(i,j):
+        
+        dp = [[-1] * n for _ in range(m)]
+
+        def calculate_path(i:int , j:int) -> int:
             if i == 0 and j == 0:
                 return 1
-            
             if i < 0 or j < 0:
                 return 0
             
-            left = F(i-1,j)
-            up = F(i , j-1)
+            if dp[i][j] != -1:
+                return dp[i][j]
+            
+            dp[i][j] = calculate_path(i-1,j) + calculate_path(i , j -1)
 
-            return left + up
+            return dp[i][j]
         
+        return calculate_path(m-1,n-1)
+
+
+
         
-        return F(m-1,n-1)
