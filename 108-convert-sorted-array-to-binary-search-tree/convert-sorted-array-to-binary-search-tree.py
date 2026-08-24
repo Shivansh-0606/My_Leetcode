@@ -13,16 +13,11 @@ class Solution:
         high = len(nums) - 1
         mid = (low + high) // 2
 
-        root = TreeNode()
+        root = TreeNode(nums[mid])
 
-        root.val = nums[mid]
+        root.left = self.sortedArrayToBST(nums[:mid])
 
-        left = self.sortedArrayToBST(nums[:mid])
-
-        right = self.sortedArrayToBST(nums[mid+1:])
-
-        root.left = left
-        root.right = right
+        root.right = self.sortedArrayToBST(nums[mid+1:])
 
         return root
          
