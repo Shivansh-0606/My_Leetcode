@@ -19,6 +19,7 @@ class Solution:
             for i in range(level_length):
                 node = queue.popleft()
 
+                # The last node in the current level is visible from the right
                 if i == level_length - 1:
                     res.append(node.val)
                 
