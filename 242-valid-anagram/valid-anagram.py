@@ -1,10 +1,12 @@
-from collections import Counter
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        count1 = Counter(s)
-        count2 = Counter(t)
-
-        if count1 == count2:
-            return True
-        else:
+        if len(s) != len(t):
             return False
+        
+        counts = [0] * 26
+
+        for char_s  , char_t in zip(s,t):
+            counts[ord(char_s) - ord('a')]+=1
+            counts[ord(char_t) - ord('a')]-=1
+        
+        return all(c == 0 for c in counts)
